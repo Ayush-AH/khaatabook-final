@@ -1,0 +1,27 @@
+<script>
+    let flag = true
+    document.querySelector(".setting").addEventListener("click",function(){
+        if(flag) {
+            document.querySelector(".logout").style.transform = "translateX(-50%) scale(1)"
+            flag = false
+        }else{
+            document.querySelector(".logout").style.transform = "translateX(-50%) scale(0)"
+            flag = true
+        }
+    })
+
+    document.querySelector(".lighttheme").addEventListener("click",function(){
+        var root = document.documentElement
+        root.style.setProperty("--primary","white")
+        root.style.setProperty("--secondary","#000")
+        root.style.setProperty("--tertiary","#dfdfdf")
+    })
+    document.querySelector(".darktheme").addEventListener("click",function(){
+        var root = document.documentElement
+        root.style.setProperty("--primary","rgb(20, 20, 20)")
+        root.style.setProperty("--secondary","#fff")
+        root.style.setProperty("--tertiary","rgba(255, 255, 255, 0.145)")
+    })
+</script>
+</body>
+</html>

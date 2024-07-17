@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="bg-zinc-white px-16 py-5 flex items-center justify-between">
+        <h1 class="font-semibold text-xl">KhaataBook</h1>
+            <% login = typeof login !== "undefined"?login : true %>
+            <%if(login){ %>
+                <div class="flex gap-6 items-center">
+                    <a href="/profile" class="font-semibold">Home</a>
+                    <a href="/hisab/create" class="font-semibold mr-4">Create new hisab</a>
+                    <i class="darktheme ri-moon-line bg-blue-800 text-white p-2 py-1 rounded-full inline-block"></i>
+                    <i class="lighttheme ri-sun-line bg-yellow-400 text-black p-2 py-1 rounded-full inline-block"></i>
+                    <div class="relative setting">
+                        <i class="ri-arrow-down-s-line text-2xl hover:bg-zinc-100 flex items-center justify-center px-1 rounded-full cursor-pointer"></i>
+                        <a href="/logout" class="logout scale-0 transition-all hover:text-red-600 text-xs bg-zinc-100  text-center rounded-md p-2 px-6 absolute left-1/2 -translate-x-1/2 top-[120%] ">logout</a>
+                    </div>
+                    
+                </div>
+           <% } %>
+    </div>
