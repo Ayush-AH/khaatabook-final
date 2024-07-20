@@ -16,19 +16,31 @@
         <input type="submit" value="filter"  class="p-2 px-6 rounded-lg text-sm bg-blue-500 text-zinc-100 font-semibold capitalize"></input>
     </form>
     <div class="hisabs w-full mt-12 flex gap-12 flex-wrap">
-            <div class="bg-zinc-200/50  hisab w-96 h-38  rounded-md p-4 py-3 ">
-                <div class="setting flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                                <div class="text-xs capitalize p-3 py-2 text-zinc-100 rounded-md bg-blue-500 flex gap-2 items-center"><i class="ri-lock-line"></i>encrypted</div>
+           <% if(user.hisabs.length > 0 ){ %>
+              <% user.hisabs.forEach(function(hisab){ %>
+                <div class="hisab bg-zinc-200/50  hisab w-96 h-38  rounded-md p-4 py-3 ">
+                    <div class="setting flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <% if(hisab.encrypted){%>
+                                    <div class="text-xs capitalize p-3 py-2 text-zinc-100 rounded-md bg-blue-500 flex gap-2 items-center"><i class="ri-lock-line"></i>encrypted</div>
+                               <% }else{%>
                                 <div class="text-xs capitalize p-3 py-2 text-zinc-100 rounded-md bg-[#40A578] flex gap-1 items-center"><i class="ri-check-fill font-semibold"></i>available</div>
+                               <%} %>
+                               <% if(!hisab.shareable){%>
                                 <i class="ri-eye-off-line p-3 py-[5px] bg-zinc-300/80 rounded-md text-sm"></i>
-                        </div>
-                    <h4 class="text-sm capitalize text-zinc-400 font-[400]">created on 46546 5451 </h4>
+                           <% }%>
+                            
+                            </div>
+                        <h4 class="text-sm capitalize text-zinc-400 font-[400]">created on <%= hisab.createdAt.getDate() %>-<%= hisab.createdAt.getMonth() + 1 %>-<%= hisab.createdAt.getFullYear() %></h4>
+                    </div>
+                    <h2 class="text-xl mt-4"><%= hisab.title %></h2>
+                    <h2 class="text-md"><%= hisab.content %></h2>
+                    <a href="/hisab/view/<%= hisab._id %>" class="text-sm text-zinc-400 mt-1 inline-block">view hisab</a>
                 </div>
-                <h2 class="text-xl mt-4">dwsdw</h2>
-                <h2 class="text-md">dwnwkjdnwknkn</h2>
-                <a href="" class="text-sm text-zinc-400 mt-1 inline-block">view hisab</a>
-            </div>
+              <%}) %>
+          <% }else{ %>
+              <h4 class="text-black/50 text-xl">No hisab yet!!</h4>
+         <% } %>
     </div>
 </div>
 

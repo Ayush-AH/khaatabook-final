@@ -7,3 +7,8 @@ module.exports.isLoggedIn = function (req, res, next) {
         next()
     })
 }
+
+module.exports.passcodeCheck = function(req,res,next){
+    if(req.session.hisabid === req.params.id) return next()
+    res.redirect(`/hisab/view/${req.params.id}`)    
+}

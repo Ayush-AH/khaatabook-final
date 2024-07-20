@@ -15,11 +15,11 @@
            <a href="" class="p-3 py-[5px] bg-zinc-300/80 rounded-md text-sm flex items-center justify-center"><i class="ri-eye-off-line "></i></a>
         <%} %>
         <a href="/hisab/delete/<%= hisab._id %>" class="p-2 px-6 rounded-lg text-sm bg-red-600 text-zinc-100  font-semibold capitalize">delete</a>
-        <a href="" class="p-2 px-6 rounded-lg text-sm bg-orange-400 text-zinc-100 font-semibold capitalize">edit</a>
+        <a href="/hisab/edit/<%= hisab._id %>" class="p-2 px-6 rounded-lg text-sm bg-orange-400 text-zinc-100 font-semibold capitalize">edit</a>
     </div>
-    <h4 class="mt-7 capitalize text-sm opacity-50 font-semibold">created on <%= hisab.createdAt.getDate()%>-<%= hisab.createdAt.getMonth()%>-<%= hisab.createdAt.getFullYear()%></h4>
+    <h4 class="mt-7 capitalize text-sm opacity-50 font-semibold">created on <%= hisab.createdAt.getDate()%>-<%= hisab.createdAt.getMonth() + 1 %>-<%= hisab.createdAt.getFullYear()%></h4>
     <h2 class="text-2xl mt-8"><%= hisab.title %></h2>
-    <h2 class="text-lg"><%= hisab.description %></h2>
+    <h2 class="text-lg"><%= hisab.content %></h2>
 </div>
 
 <script>

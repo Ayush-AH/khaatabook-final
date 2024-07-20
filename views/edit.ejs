@@ -2,16 +2,16 @@
 
     <div class="w-full h-[90vh] px-16">
         <h1 class="capitalize font-semibold text-xl">create new hisab</h1>
-        <form action="/hisab/createhisab" method="post">
+        <form action="/hisab/update/<%= hisab._id %>" method="post">
             <input class="block w-[35%] bg-zinc-100 p-2 px-4 rounded-md border-2 border-zinc-200 mt-6 outline-none"
-            type="text" placeholder="Shoping hisab...." name="title">
+            type="text" value="<%= hisab.title %>" placeholder="hisab title...." name="title">
         <textarea
             class="block w-[45%] h-64 bg-zinc-100 p-2 px-4 rounded-md border-2 border-zinc-200 mt-6 resize-none outline-none"
-            name="content" placeholder="Daal,Aata,Cheeni..." ></textarea>
+            name="content" placeholder="Daal,Aata,Cheeni..." ><%= hisab.content%></textarea>
          <div class="flex w-[30%] items-center justify-between mt-4">
             <div class="flex gap-2 w-36">
-                <input id="in" type="checkbox" name="encrypted">
-                <h4 class="text-sm capitalize">encrypt this file</h4>
+                <input id="in" type="checkbox">
+                <h4 class="text-sm capitalize" >encrypt this file</h4>
             </div>
             <div class="flex gap-2 w-36">
                 <input type="checkbox" name="shareable">
@@ -27,10 +27,8 @@
                 <h4 class="text-sm ">Edit Permission <span class="text-xs text-blue-500 whitespace-nowrap font-semibold">( *Select if you want to edit in future )</span></h4>
             </div>
         </div>
-        <input class="bg-blue-500 outline-none p-2 text-zinc-100 mt-12  rounded-md border-2 border-zinc-100" type="submit"  value="Create New Hisab">
-   
+        <input class="bg-blue-500 outline-none p-2 text-zinc-100 mt-12  rounded-md border-2 border-zinc-100" type="submit"  value="Update Hisab">
         </form>
         </div>
-
 
     <%- include("./partials/footer.ejs") %>
