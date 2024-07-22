@@ -12,7 +12,7 @@ const { isLoggedIn, passcodeCheck } = require("../middlewear/login-middlewear")
 
 
 router.get("/create", function (req, res) {
-    res.render("create")
+    res.render("create",{error:req.flash("error")})
 })
 router.post("/createhisab", isLoggedIn, createHisabController)
 router.get("/view/:id", viewHisabController)

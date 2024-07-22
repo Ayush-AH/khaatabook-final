@@ -6,10 +6,16 @@ const jwt = require("jsonwebtoken")
 module.exports.registerController = async function (req, res) {
     try {
         let { username, email, password } = req.body
-        if (!username || !email || !password) return res.send("please fill all the fields")
+        if (!username || !email || !password) {
+            req.flash("error", "please fill all the fields")
+            return res.redirect("/register")
+        }
 
         let user = await userModel.findOne({ username })
-        if (user) return res.send("you already have account please loggin")
+        if (user) {
+            req.flash("error", "you already have account please loggin")
+            return res.redirect("/register")
+        }
 
         bcrypt.genSalt(10, function (err, salt) {
             bcrypt.hash(password, salt, async function (err, hash) {
@@ -34,13 +40,22 @@ module.exports.registerController = async function (req, res) {
 module.exports.loginController = async function (req, res) {
     try {
         let { email, password } = req.body
-        if (!email || !password) return res.send("please fill all the fields")
+        if (!email || !password) {
+            req.flash("error", "please fill all the fields")
+            return res.redirect("/")
+        }
 
         let user = await userModel.findOne({ email })
-        if (!user) return res.send("email or password is incorrect")
+        if (!user) {
+            req.flash("error", "email or password is incorrect")
+            return res.redirect("/")
+        }
 
         bcrypt.compare(password, user.password, function (err, result) {
-            if (!result) return res.send("email or password is incorrect")
+            if (!result) {
+                req.flash("error", "email or password is incorrect")
+                return res.redirect("/")
+            }
             let token = jwt.sign({ email, _id: user._id }, process.env.JWT_SECRET)
             res.cookie("token", token)
             res.redirect("/profile")

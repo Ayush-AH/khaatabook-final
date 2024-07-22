@@ -27,6 +27,9 @@
                 <h4 class="text-sm ">Edit Permission <span class="text-xs text-blue-500 whitespace-nowrap font-semibold">( *Select if you want to edit in future )</span></h4>
             </div>
         </div>
+        <% if(error.length > 0){ %>
+            <h5 class="text-xm text-red-500  mb-1 capitalize"><%= error[0] %></h5>
+        <% } %>
         <input class="bg-blue-500 outline-none p-2 text-zinc-100 mt-12  rounded-md border-2 border-zinc-100" type="submit"  value="Create New Hisab">
    
         </form>

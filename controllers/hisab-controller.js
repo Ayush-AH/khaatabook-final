@@ -5,12 +5,20 @@ module.exports.createHisabController = async function (req, res) {
    try {
       let { title, content, encrypted, passcode, shareable, editable } = req.body
       let user = await userModel.findOne({ email: req.user.email })
-      if (!title || !content) return res.send("empty field!!")
+      if (!title || !content){
+         req.flash("error","empty field!!")
+         return res.redirect("/hisab/create")
+      } 
       encrypted = encrypted === "on" ? true : false
       shareable = shareable === "on" ? true : false
       editable = editable === "on" ? true : false
       if (encrypted && !passcode) {
-         return res.send("passcode required!!")
+         req.flash("error","passcode required!!")
+         return res.redirect("/hisab/create")
+      }
+      if (!encrypted && passcode) {
+         req.flash("error","check the encrypted checkbox!!")
+         return res.redirect("/hisab/create")
       }
       let hisab = await hisabModel.create({
          title,
@@ -33,7 +41,7 @@ module.exports.createHisabController = async function (req, res) {
 module.exports.viewHisabController = async function (req, res) {
    try {
       let hisab = await hisabModel.findOne({ _id: req.params.id })
-      if (hisab.encrypted) return res.render("passcode", { hisabid: hisab._id })
+      if (hisab.encrypted) return res.render("passcode", { hisabid: hisab._id ,error:req.flash("error")})
       res.render("view", { hisab })
    }
    catch (err) {
@@ -44,14 +52,18 @@ module.exports.viewHisabController = async function (req, res) {
 module.exports.hisabVerifyController = async function (req, res) {
    try {
       let { passcode } = req.body
+      if (!passcode){
+         req.flash("error","passcode Required !!")
+         return res.redirect(`/hisab/view/${req.params.id}`)
+      } 
       let hisab = await hisabModel.findOne({ _id: req.params.id })
-      if (!passcode) return res.send("passcode Required !!")
       if (passcode === hisab.passcode) {
          req.session.hisabid = hisab._id
          res.redirect(`/hisab/${hisab._id}`)
       }
       else {
-         res.send("Incorrect passcode!!")
+         req.flash("error","Incorrect passcode!!")
+         return res.redirect(`/hisab/view/${req.params.id}`)
       }
    }
    catch (err) {
@@ -94,7 +106,7 @@ module.exports.editHisabController = async function (req, res) {
       res.render("edit", { hisab })
    }
    catch (err) {
-      res.send(err._message)
+      res.send(err._message)  
    }
 }
 

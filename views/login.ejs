@@ -6,6 +6,9 @@
         <form action="/login" method="post">
             <input class="block border border-zinc-300 rounded-md w-full p-2 mb-2 outline-none bg-zinc-200/30" type="email" name="email" placeholder="Email">
             <input class="block border border-zinc-300 rounded-md w-full p-2 mb-2 outline-none bg-zinc-200/30" type="password" name="password" placeholder="Password">
+            <% if(error.length > 0){ %>
+               <h5 class="text-xm text-red-500  mb-1 capitalize"><%= error[0] %></h5>
+           <% } %>
             <input class="block p-2 px-4 text-white bg-blue-500 rounded-md w-full mt-4" type="submit" value="Log In">
         </form>
         <a href="/register" class="text-blue-500 text-sm mt-2">Don't have account ? Sign Up</a>
