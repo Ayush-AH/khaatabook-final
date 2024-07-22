@@ -10,20 +10,20 @@
             name="content" placeholder="Daal,Aata,Cheeni..." ><%= hisab.content%></textarea>
          <div class="flex w-[30%] items-center justify-between mt-4">
             <div class="flex gap-2 w-36">
-                <input id="in" type="checkbox">
+                <input id="in" type="checkbox" <%= hisab.encrypted ? 'checked' : '' %> >
                 <h4 class="text-sm capitalize" >encrypt this file</h4>
             </div>
             <div class="flex gap-2 w-36">
-                <input type="checkbox" name="shareable">
+                <input type="checkbox" name="shareable" <%= hisab.shareable ? 'checked' : '' %>>
                 <h4 class="text-sm capitalize">shareable?</h4>
             </div>
         </div>
         <div class="flex mt-6 w-[30%] items-center justify-between">
             <div class="flex gap-2 w-36">
-                <input class="passcode bg-zinc-100/50 outline-none p-2 py-1 w-full rounded-md border-2 border-zinc-300"  type="text" name="passcode" placeholder="Passcode">
+                <input class="passcode bg-zinc-100/50 outline-none p-2 py-1 w-full rounded-md border-2 border-zinc-300" value="<%=  hisab.passcode ? hisab.passcode : ''  %>"  type="text" name="passcode" placeholder="Passcode">
             </div>
             <div class="flex gap-2 w-36">
-                <input type="checkbox" id="encryptcheck" name="editable">
+                <input type="checkbox" id="encryptcheck" name="editable"  <%= hisab.editable ? 'checked' : '' %>>
                 <h4 class="text-sm ">Edit Permission <span class="text-xs text-blue-500 whitespace-nowrap font-semibold">( *Select if you want to edit in future )</span></h4>
             </div>
         </div>
